@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-import genDiff from '../index';
+import genDiff from '..';
 
 program
 .version('0.0.1')
