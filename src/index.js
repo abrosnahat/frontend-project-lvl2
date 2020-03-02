@@ -6,14 +6,14 @@ const genDiff = (file1, file2) => {
   const firstFileParse = JSON.parse(firstFile);
   const secondFileParse = JSON.parse(secondFile);
 
-  const firstFileArray = Object.entries(firstFileParse).map(item => `${item[0]}: ${item[1]}`);
-  const secondFileArray = Object.entries(secondFileParse).map(item => `${item[0]}: ${item[1]}`);
+  const firstFileArray = Object.entries(firstFileParse).map((item) => `${item[0]}: ${item[1]}`);
+  const secondFileArray = Object.entries(secondFileParse).map((item) => `${item[0]}: ${item[1]}`);
 
-  const result = firstFileArray.reduce((accumulator, key) => {
+  const result = firstFileArray.reduce((acc, key) => {
     if (secondFileArray.includes(key)) {
+      let accumulator = acc;
       accumulator += key;
-      console.log(key);
-      return key;
+      console.log('bia');
     }
   }, '');
 
