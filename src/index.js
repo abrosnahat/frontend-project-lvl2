@@ -1,3 +1,5 @@
+import { each, has } from 'lodash';
+
 const fs = require('fs');
 
 const genDiff = (file1, file2) => {
@@ -6,18 +8,34 @@ const genDiff = (file1, file2) => {
   const firstFileParse = JSON.parse(firstFile);
   const secondFileParse = JSON.parse(secondFile);
 
-  const firstFileArray = Object.entries(firstFileParse).map((item) => `${item[0]}: ${item[1]}`);
-  const secondFileArray = Object.entries(secondFileParse).map((item) => `${item[0]}: ${item[1]}`);
+  let result = '{';
 
-  const result = firstFileArray.reduce((acc, key) => {
-    if (secondFileArray.includes(key)) {
-      let accumulator = acc;
-      accumulator += key;
-      console.log('bia');
+  each(firstFileParse, (value, key) => {
+    if (has(secondFileParse, key) && secondFileParse[key] === value) {
+      result += `
+    ${key}: ${value}`;
+    } else if (has(secondFileParse, key)) {
+      result += `
+  - ${key}: ${value}
+  + ${key}: ${secondFileParse[key]}`;
     }
-  }, '');
 
-  console.log(result);
+    if (!has(secondFileParse, key)) {
+      result += `
+  - ${key}: ${value}`;
+    }
+  });
+
+  each(secondFileParse, (value, key) => {
+    if (!has(firstFileParse, key)) {
+      result += `
+  + ${key}: ${value}`;
+    }
+  });
+
+  console.log(`${result}
+}`);
+
 };
 
 export default genDiff;
