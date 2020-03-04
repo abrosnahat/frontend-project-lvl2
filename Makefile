@@ -13,11 +13,5 @@ build:
 	rm -rf dist
 	npm run build
 
-install-deps:
-	npm ci
-
 test:
 	npm test
-
-test-coverage:
-	npm test -- --coverage
