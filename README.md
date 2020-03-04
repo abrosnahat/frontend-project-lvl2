@@ -1,0 +1,1 @@
+![Node CI](https://github.com/abrosnahat/frontend-project-lvl2/workflows/Node%20CI/badge.svg)
