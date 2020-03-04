@@ -7,11 +7,18 @@ publish:
 lint:
 	npx eslint .
 
-install: install-deps
+install:
+	install-deps
 
 build:
 	rm -rf dist
 	npm run build
 
+install-deps:
+	npm ci
+
 test:
 	npm test
+
+test-coverage:
+	npm test -- --coverage
