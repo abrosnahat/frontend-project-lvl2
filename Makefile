@@ -19,3 +19,6 @@ lint:
 
 install-deps:
 	npm ci
+
+test-coverage:
+	npm test -- --coverage
