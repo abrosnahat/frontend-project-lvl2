@@ -5,8 +5,9 @@ export default (file, fileExtension) => {
     return JSON.parse(file);
   }
 
-  if (fileExtension === '.yaml') {
+  /* if (fileExtension === '.yaml') {
     return yaml.safeLoad(file);
-  }
+  } */
 
+  return yaml.safeLoad(file);
 };
