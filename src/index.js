@@ -1,12 +1,21 @@
 import { each, has } from 'lodash';
+import path from 'path';
+import parse from './parser';
 
 const fs = require('fs');
 
+const readFile = (file) => {
+  const fullPath = path.resolve(__dirname, `../__tests__/__fixtures__/${file}`);
+  const fileContent = fs.readFileSync(fullPath);
+
+  return fileContent;
+};
+
 const genDiff = (file1, file2) => {
-  const firstFile = fs.readFileSync(file1);
-  const secondFile = fs.readFileSync(file2);
-  const firstFileParse = JSON.parse(firstFile);
-  const secondFileParse = JSON.parse(secondFile);
+  const firstFile = readFile(file1);
+  const secondFile = readFile(file2);
+  const firstFileParse = parse(firstFile, path.extname(file1));
+  const secondFileParse = parse(secondFile, path.extname(file2));
 
   let result = '{';
 
