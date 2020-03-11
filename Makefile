@@ -12,7 +12,7 @@ test:
 	npm test
 
 start:
-	npx babel-node src/bin/gendiff.js before.yaml after.yaml
+	npx babel-node src/bin/gendiff.js before.ini after.ini
 
 lint:
 	npx eslint .

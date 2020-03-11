@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const readFile = (file) => {
   const fullPath = path.resolve(__dirname, `../__tests__/__fixtures__/${file}`);
-  const fileContent = fs.readFileSync(fullPath);
+  const fileContent = fs.readFileSync(fullPath, 'utf-8');
 
   return fileContent;
 };
@@ -42,8 +42,8 @@ const genDiff = (file1, file2) => {
     }
   });
 
-  console.log(`${result}
-}`);
+  // console.log(`${result}
+  // }`);
   return `${result}
 }`;
 };
